@@ -1,7 +1,7 @@
 import clsx from "clsx";
-import { PhoneIcon } from "lucide-react";
 import Link from "next/link";
 import { FaInstagram } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 
 export function Footer() {
   return (
@@ -15,19 +15,18 @@ export function Footer() {
           <div className="flex flex-col justify-center items-center gap-2">
             <h1 className="text-amber-500 text-2xl">Atendimento</h1>
             <span className="flex gap-2 text-slate-50">
-              <PhoneIcon />
+              <FaWhatsapp className="w-6 h-6"/>
               <p> (61) 98213-4990</p>
             </span>
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-end gap-2">
             <h1 className="text-amber-500 text-2xl">Siga-nos:</h1>
             <a
-              className="p-2"
               href="https://www.instagram.com/fortedistribuidora.moveis/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaInstagram className="text-slate-50 w-7 h-7" />
+              <FaInstagram className="text-slate-50 w-7 h-7 hover:opacity-60 transition" />
             </a>
           </div>
         </section>
@@ -48,13 +47,13 @@ export function Footer() {
         <section className="flex flex-col items-center gap-2">
           <h1 className="text-amber-500 text-2xl">Links</h1>
           <ul className="text-slate-50 flex flex-col gap-3 items-center">
-            <Link href="#">Início</Link>
-            <Link href="#">Loja Física</Link>
-            <Link href="#">Sobre</Link>
-            <Link href="#">Contato</Link>
-            <Link href="#">Quarto</Link>
-            <Link href="#">Sala de estar</Link>
-            <Link href="#">Sala de jantar</Link>
+            <Link href="/">Início</Link>
+            <Link href="/loja-fisica">Loja Física</Link>
+            <Link href="/sobre">Sobre</Link>
+            <Link href="/contato">Contato</Link>
+            <Link href="/categorias/quarto">Quarto</Link>
+            <Link href="/categorias/sala-de-estar">Sala de estar</Link>
+            <Link href="/categorias/sala-de-jantar">Sala de jantar</Link>
           </ul>
         </section>
 

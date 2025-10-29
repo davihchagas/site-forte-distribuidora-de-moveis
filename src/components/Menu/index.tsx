@@ -15,6 +15,7 @@ import {
   MenuIcon,
   XIcon,
   ChevronDown,
+  HomeIcon,
 } from "lucide-react";
 
 export function Menu() {
@@ -46,7 +47,7 @@ export function Menu() {
       <nav className="flex items-center justify-between py-3 px-6 sm:px-6 md:px-10 lg:px-40 z-10">
         {/* Logo responsiva com next/image otimizada */}
         <Link
-          href="#"
+          href="/"
           className="flex items-center"
           aria-label="Página inicial"
         >
@@ -65,17 +66,21 @@ export function Menu() {
         {/* Ações à direita */}
         {/* Desktop */}
         <div className="hidden sm:flex items-center gap-1">
-          <Link href="#" className={baseLink}>
+          <Link href="/" className={baseLink}>
+            <HomeIcon className="size-4" />
+            <span>Início</span>
+          </Link>
+          <Link href="/loja-fisica" className={baseLink}>
             <StoreIcon className="size-4" />
             <span>Loja Física</span>
           </Link>
 
-          <Link href="#" className={baseLink}>
+          <Link href="/sobre" className={baseLink}>
             <InfoIcon className="size-4" />
             <span>Sobre</span>
           </Link>
 
-          <Link href="#" className={baseLink}>
+          <Link href="/contato" className={baseLink}>
             <PhoneIcon className="size-4" />
             <span>Contato</span>
           </Link>
@@ -110,13 +115,13 @@ export function Menu() {
                 className="absolute right-0 top-full z-50 min-w-56 rounded-xl border border-white/10 bg-zinc-900/95 p-2 shadow-xl backdrop-blur-md"
                 role="menu"
               >
-                <Link href="#quarto" className={baseLink} role="menuitem">
+                <Link href="/categorias/quarto" className={baseLink} role="menuitem">
                   <BedDoubleIcon className="size-4" /> Quarto
                 </Link>
-                <Link href="#sala-estar" className={baseLink} role="menuitem">
+                <Link href="/categorias/sala-de-estar" className={baseLink} role="menuitem">
                   <SofaIcon className="size-4" /> Sala de Estar
                 </Link>
-                <Link href="#sala-jantar" className={baseLink} role="menuitem">
+                <Link href="/categorias/sala-de-jantar" className={baseLink} role="menuitem">
                   <LampIcon className="size-4" /> Sala de Jantar
                 </Link>
               </div>
@@ -148,15 +153,19 @@ export function Menu() {
         aria-hidden={!open}
       >
         <div className="px-4 pb-4 flex flex-col gap-1">
-          <Link href="#" className={baseLink}>
+          <Link href="/" className={baseLink}>
+            <HomeIcon className="size-4" />
+            Início
+          </Link>
+          <Link href="/loja-fisica" className={baseLink}>
             <StoreIcon className="size-4" />
             Loja Física
           </Link>
-          <Link href="#" className={baseLink}>
+          <Link href="/sobre" className={baseLink}>
             <InfoIcon className="size-4" />
             Sobre
           </Link>
-          <Link href="#" className={baseLink}>
+          <Link href="/contato" className={baseLink}>
             <PhoneIcon className="size-4" />
             Contato
           </Link>
@@ -186,13 +195,13 @@ export function Menu() {
               )}
               role="menu"
             >
-              <Link href="#quarto" className={baseLink} role="menuitem">
+              <Link href="/categorias/quarto" className={baseLink} role="menuitem">
                 <BedDoubleIcon className="size-4" /> Quarto
               </Link>
-              <Link href="#sala-estar" className={baseLink} role="menuitem">
+              <Link href="/categorias/sala-de-estar" className={baseLink} role="menuitem">
                 <SofaIcon className="size-4" /> Sala de Estar
               </Link>
-              <Link href="#sala-jantar" className={baseLink} role="menuitem">
+              <Link href="/categorias/sala-de-jantar" className={baseLink} role="menuitem">
                 <LampIcon className="size-4" /> Sala de Jantar
               </Link>
             </div>
