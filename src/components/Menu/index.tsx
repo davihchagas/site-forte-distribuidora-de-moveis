@@ -42,7 +42,7 @@ export function Menu() {
     "flex items-center justify-start gap-2 cursor-pointer px-3 py-2 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40";
 
   return (
-    <header ref={navRef} className="w-full bg-black text-slate-50 fixed">
+    <header ref={navRef} className="w-full bg-black text-slate-50 fixed z-200">
       {/* Barra superior */}
       <nav className="flex items-center justify-between py-3 px-6 sm:px-6 md:px-10 lg:px-40 z-10">
         {/* Logo responsiva com next/image otimizada */}
@@ -115,13 +115,25 @@ export function Menu() {
                 className="absolute right-0 top-full z-50 min-w-56 rounded-xl border border-white/10 bg-zinc-900/95 p-2 shadow-xl backdrop-blur-md"
                 role="menu"
               >
-                <Link href="/categorias/quarto" className={baseLink} role="menuitem">
+                <Link
+                  href="/categorias/quarto"
+                  className={baseLink}
+                  role="menuitem"
+                >
                   <BedDoubleIcon className="size-4" /> Quarto
                 </Link>
-                <Link href="/categorias/sala-de-estar" className={baseLink} role="menuitem">
+                <Link
+                  href="/categorias/sala-de-estar"
+                  className={baseLink}
+                  role="menuitem"
+                >
                   <SofaIcon className="size-4" /> Sala de Estar
                 </Link>
-                <Link href="/categorias/sala-de-jantar" className={baseLink} role="menuitem">
+                <Link
+                  href="/categorias/sala-de-jantar"
+                  className={baseLink}
+                  role="menuitem"
+                >
                   <LampIcon className="size-4" /> Sala de Jantar
                 </Link>
               </div>
@@ -153,19 +165,35 @@ export function Menu() {
         aria-hidden={!open}
       >
         <div className="px-4 pb-4 flex flex-col gap-1">
-          <Link href="/" className={baseLink}>
+          <Link
+            href="/"
+            className={baseLink}
+            onClick={() => setOpen((v) => !v)}
+          >
             <HomeIcon className="size-4" />
             Início
           </Link>
-          <Link href="/loja-fisica" className={baseLink}>
+          <Link
+            href="/loja-fisica"
+            className={baseLink}
+            onClick={() => setOpen((v) => !v)}
+          >
             <StoreIcon className="size-4" />
             Loja Física
           </Link>
-          <Link href="/sobre" className={baseLink}>
+          <Link
+            href="/sobre"
+            className={baseLink}
+            onClick={() => setOpen((v) => !v)}
+          >
             <InfoIcon className="size-4" />
             Sobre
           </Link>
-          <Link href="/contato" className={baseLink}>
+          <Link
+            href="/contato"
+            className={baseLink}
+            onClick={() => setOpen((v) => !v)}
+          >
             <PhoneIcon className="size-4" />
             Contato
           </Link>
@@ -195,13 +223,28 @@ export function Menu() {
               )}
               role="menu"
             >
-              <Link href="/categorias/quarto" className={baseLink} role="menuitem">
+              <Link
+                href="/categorias/quarto"
+                className={baseLink}
+                role="menuitem"
+                onClick={() => setOpen((v) => !v)}
+              >
                 <BedDoubleIcon className="size-4" /> Quarto
               </Link>
-              <Link href="/categorias/sala-de-estar" className={baseLink} role="menuitem">
+              <Link
+                href="/categorias/sala-de-estar"
+                className={baseLink}
+                role="menuitem"
+                onClick={() => setOpen((v) => !v)}
+              >
                 <SofaIcon className="size-4" /> Sala de Estar
               </Link>
-              <Link href="/categorias/sala-de-jantar" className={baseLink} role="menuitem">
+              <Link
+                href="/categorias/sala-de-jantar"
+                className={baseLink}
+                role="menuitem"
+                onClick={() => setOpen((v) => !v)}
+              >
                 <LampIcon className="size-4" /> Sala de Jantar
               </Link>
             </div>

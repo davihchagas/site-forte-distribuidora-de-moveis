@@ -1,6 +1,9 @@
+import { Card } from "@/src/components/Card";
 import { Content } from "@/src/components/Content";
+import clsx from "clsx";
 
 export default function About() {
+  const cardClass = clsx("md:text-2xl font-bold text-amber-400 flex items-center text-center w-50 h-50 m-auto p-7")
   return (
     <Content>
       <section className="flex flex-col gap-3 sm:text-2xl text-justify">
@@ -24,12 +27,12 @@ export default function About() {
         <p>
           Você é lojista ou vendedor online? Aproveite a oportunidade de ter um fornecedor de confiança ao seu lado!
         </p>
-        <ul className="text-left max-w-lG space-y-2 list-disc list-inside">
-          <li>Produtos de alta qualidade à pronta entrega</li>
-          <li>Preços competitivos e condições exclusivas</li>
-          <li>Atendimento personalizado e ágil</li>
-          <li>Margem de lucro atraente</li>
-          <li>Acesso completo ao catálogo de produtos</li>
+        <ul className="flex flex-wrap justify-between gap-5">
+          <Card className={cardClass}> <p>Produtos de alta qualidade à pronta entrega</p></Card>
+          <Card className={cardClass}>Preços competitivos e condições exclusivas</Card>
+          <Card className={cardClass}>Atendimento personalizado e ágil</Card>
+          <Card className={cardClass}>Margem de lucro atraente</Card>
+          <Card className={cardClass}>Acesso completo ao catálogo de produtos</Card>
         </ul>
       </section>
     </Content>
