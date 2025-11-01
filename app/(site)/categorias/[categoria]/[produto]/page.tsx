@@ -9,6 +9,7 @@ import {
   ProductDimension,
   ProductExtraSection,
 } from "@/src/models/product";
+import Link from "next/link";
 
 type ParamsPromise = Promise<{
   categoria: string;
@@ -79,6 +80,10 @@ export default async function ProductPage({
 
   return (
     <Content>
+      <div className="flex flex-col text-slate-700 gap-5">
+        <Link href="/" className=" hover:opacity-50 transition">⭠ Voltar para o Início</Link>
+        <Link href={`/categorias/${categoria}`} className=" hover:opacity-50 transition">⭠ Voltar para a Categoria</Link>
+      </div>
       <div className="flex flex-col md:flex-row gap-8 mt-6">
         {/* esquerda */}
         <div className="md:w-1/2">
