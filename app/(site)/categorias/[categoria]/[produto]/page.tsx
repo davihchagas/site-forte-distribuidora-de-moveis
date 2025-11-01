@@ -100,7 +100,7 @@ export default async function ProductPage({
           </div>
 
           <p className="text-amber-600 text-2xl font-bold">
-            R$ {price?.toLocaleString("pt-BR")}
+            R$ {price?.toLocaleString("pt-BR")},00
           </p>
 
           {shortDescription && (

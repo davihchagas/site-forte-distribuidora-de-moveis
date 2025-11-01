@@ -13,6 +13,7 @@ import { SimpleProductCard, SanityImage } from "@/src/models/product";
 
 type Props = {
   products: SimpleProductCard[];
+  idx: number;
 };
 
 function buildImageUrl(img: SanityImage, w: number, h: number) {
@@ -24,8 +25,8 @@ function buildImageUrl(img: SanityImage, w: number, h: number) {
   return urlFor(img).width(w).height(h).url();
 }
 
-export default function ProductsCarousel({ products }: Props) {
-  const [index, setIndex] = useState(0);
+export default function ProductsCarousel({ products, idx }: Props) {
+  const [index, setIndex] = useState(idx);
 
   if (!products || products.length === 0) {
     return <p className="text-slate-400">Nenhum produto nesta categoria.</p>;
@@ -83,7 +84,7 @@ export default function ProductsCarousel({ products }: Props) {
                   {product.name}
                 </h3>
                 <p className="text-amber-600 font-bold">
-                  R$ {product.price?.toLocaleString("pt-BR")}
+                  R$ {product.price?.toLocaleString("pt-BR")},00
                 </p>
               </div>
               <div className="p-3 flex flex-col gap-3">
