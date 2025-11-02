@@ -12,6 +12,8 @@ import { Card } from "@/src/components/Card";
 import { GrMoney, GrStatusGood } from "react-icons/gr";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { BsBoxSeam } from "react-icons/bs";
+import { FaArrowRight } from "react-icons/fa";
+import clsx from "clsx";
 
 // Dados esperados da query
 interface HomeProductsData {
@@ -31,6 +33,7 @@ export default async function Home() {
   const salaDeEstar = all.filter((p) => p.category === "sala_de_estar");
   const salaDeJantar = all.filter((p) => p.category === "sala_de_jantar");
   const quarto = all.filter((p) => p.category === "quarto");
+  const seeMoreClasses = clsx("md:text-2xl my-2 text-amber-400 text-center xl:text-start flex items-center justify-center gap-2 font-extrabold")
 
   return (
     <Content>
@@ -56,9 +59,10 @@ export default async function Home() {
           <ProductsCarousel products={quarto} idx={0} />
           <Link
             href="/categorias/quarto"
-            className="md:text-2xl my-4 text-amber-400 text-center"
+            className={seeMoreClasses}
           >
-            ⭢ Ver tudo de Quarto
+            <FaArrowRight />
+            <p>Ver tudo de Quarto</p>
           </Link>
         </section>
 
@@ -67,14 +71,15 @@ export default async function Home() {
             href="/categorias/sala-de-estar"
             className="text-2xl sm:text-3xl md:text-4xl font-bold my-4 text-amber-400 text-center"
           >
-            Sala de estar
+            Sala de Estar
           </Link>
-          <ProductsCarousel products={salaDeEstar} idx={4}/>
+          <ProductsCarousel products={salaDeEstar} idx={4} />
           <Link
             href="/categorias/sala-de-estar"
-            className="md:text-2xl my-4 text-amber-400 text-center"
+            className={seeMoreClasses}
           >
-            ⭢ Ver tudo de Sala de Estar
+            <FaArrowRight />
+            <p>Ver tudo de Sala de Estar</p>
           </Link>
         </section>
 
@@ -83,14 +88,15 @@ export default async function Home() {
             href="/categorias/sala-de-jantar"
             className="text-2xl sm:text-3xl md:text-4xl font-bold my-4 text-amber-400 text-center xl:text-start"
           >
-            Sala de jantar
+            Sala de Jantar
           </Link>
           <ProductsCarousel products={salaDeJantar} idx={0} />
           <Link
             href="/categorias/sala-de-jantar"
-            className="md:text-2xl my-4 text-amber-400 text-center xl:text-start"
+            className={seeMoreClasses}
           >
-            ⭢ Ver tudo de Sala de Jantar
+            <FaArrowRight />
+            <p>Ver tudo de Sala de Jantar</p>
           </Link>
         </section>
       </div>
