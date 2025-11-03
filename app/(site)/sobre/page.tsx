@@ -3,11 +3,12 @@ import { Content } from "@/src/components/Content";
 import clsx from "clsx";
 
 export default function About() {
-  const cardClass = clsx("md:text-2xl font-bold text-amber-400 flex items-center text-center w-50 h-50 m-auto p-7")
+  const cardClass = clsx("md:text-2xl font-bold text-amber-400 flex items-center text-center w-50 h-50 m-auto p-7");
+  const titleClass = clsx("text-2xl md:text-3xl font-bold text-amber-400 text-start");
   return (
     <Content>
       <section className="flex flex-col gap-3 sm:text-2xl text-justify">
-      <h1 className="text-2xl md:text-3xl font-bold text-amber-400 text-start">
+      <h1 className={titleClass}>
            Sobre a Forte - Distribuidora de Móveis - Ceilândia
       </h1>
       <p> Há 4 anos atuando no mercado, a <b>Forte - Distribuidora de Móveis - Ceilândia </b>   
@@ -23,7 +24,7 @@ export default function About() {
         Participante ativa de <b>eventos e feiras de móveis</b>, a distribuidora busca constantemente inovação, 
         novas parcerias e produtos que atendam às demandas do mercado.
       </p>
-      <h3 className="text-2xl md:text-3xl font-bold text-amber-400 text-start">Seja nosso parceiro!</h3>
+      <h3 className={titleClass}>Seja nosso parceiro!</h3>
         <p>
           Você é lojista ou vendedor online? Aproveite a oportunidade de ter um fornecedor de confiança ao seu lado!
         </p>

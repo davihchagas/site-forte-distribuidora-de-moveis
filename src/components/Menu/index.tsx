@@ -57,7 +57,6 @@ export function Menu() {
             width={180} // resolução base mais alta garante nitidez
             height={108} // proporcional
             priority
-            quality={95}
             sizes="(max-width: 639px) 140px, (max-width: 1023px) 160px, 180px"
             className="h-auto w-[140px] sm:w-40 md:w-[180px]"
           />

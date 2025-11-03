@@ -1,24 +1,18 @@
 // app/categorias/[categoria]/[produto]/page.tsx
 import { Content } from "@/src/components/Content";
-import { client } from "@/sanity/lib/client";
 import { WhatsAppButton } from "@/src/components/WhatsAppButton";
 import ProductImagesCarousel from "@/src/components/ProductImagesCarousel";
 import { notFound } from "next/navigation";
-import {
-  ProductFull,
-  ProductDimension,
-  ProductExtraSection,
-} from "@/src/models/product";
+import { ProductDimension, ProductExtraSection } from "@/src/models/product";
 import Link from "next/link";
+import { routeToSanityCategory } from "@/src/utils/routeToSanity";
+import { getFullProduct } from "@/src/lib/get-full-product";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 type ParamsPromise = Promise<{
   categoria: string;
   produto: string;
 }>;
-
-function routeToSanityCategory(route: string): string {
-  return route.replace(/-/g, "_");
-}
 
 export default async function ProductPage({
   params,
@@ -28,35 +22,7 @@ export default async function ProductPage({
   const { categoria, produto } = await params;
   const sanityCategory = routeToSanityCategory(categoria);
 
-  const query = `*[_type == "product" && slug.current == $slug && category == $category][0]{
-    name,
-    price,
-    "slug": slug.current,
-    category,
-    shortDescription,
-    colors,
-    features,
-    dimensions[] {
-      label,
-      height,
-      width,
-      depth
-    },
-    images[] {
-      ...,
-      asset->
-    },
-    extraSections[] {
-      title,
-      content
-    },
-    sku
-  }`;
-
-  const data = await client.fetch<ProductFull | null>(query, {
-    slug: produto,
-    category: sanityCategory,
-  });
+  const data = await getFullProduct(produto, sanityCategory);
 
   if (!data) {
     notFound();
@@ -80,9 +46,17 @@ export default async function ProductPage({
 
   return (
     <Content>
-      <div className="flex flex-col text-slate-700 gap-5">
-        <Link href="/" className=" hover:opacity-50 transition">⭠ Voltar para o Início</Link>
-        <Link href={`/categorias/${categoria}`} className=" hover:opacity-50 transition">⭠ Voltar para a Categoria</Link>
+      <div className="flex flex-col text-slate-700 gap-5 w-fit">
+        <Link href="/" className=" hover:opacity-50 transition flex items-center gap-1">
+          <FaArrowAltCircleLeft />
+          <p>Voltar para o Início</p>{" "}
+        </Link>
+        <Link
+          href={`/categorias/${categoria}`}
+          className=" hover:opacity-50 transition flex items-center gap-1"
+        >
+          <FaArrowAltCircleLeft /> <p>Voltar para a Categoria</p>{" "}
+        </Link>
       </div>
       <div className="flex flex-col md:flex-row gap-8 mt-6">
         {/* esquerda */}

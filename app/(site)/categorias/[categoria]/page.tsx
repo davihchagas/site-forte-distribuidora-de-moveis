@@ -1,30 +1,14 @@
 // app/categorias/[categoria]/page.tsx
 import { Content } from "@/src/components/Content";
-import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 import Link from "next/link";
 import { Card } from "@/src/components/Card";
 import { urlFor } from "@/sanity/lib/image";
 import { WhatsAppButton } from "@/src/components/WhatsAppButton";
-import { SimpleProductCard } from "@/src/models/product";
+import { normalizeRouteCategory } from "@/src/utils/normalizeRoute";
+import { getAllProducts } from "@/src/lib/get-category-products";
 
 type PageParams = Promise<{ categoria: string }>;
-
-function normalizeRouteCategory(raw: string) {
-  return raw.toLowerCase().replace(/\/+$/, "");
-}
-
-async function getAllProducts(): Promise<SimpleProductCard[]> {
-  return client.fetch<SimpleProductCard[]>(
-    `*[_type == "product"]{
-      name,
-      price,
-      "currentSlug": slug.current,
-      "mainImage": images[0],
-      category
-    } | order(_createdAt desc)`
-  );
-}
 
 export default async function CategoriaPage({
   params,
