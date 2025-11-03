@@ -84,7 +84,7 @@ export default async function CategoriaPage({
               <div className="flex flex-col px-3 py-2">
                 <h2 className="font-semibold mt-2">{product.name}</h2>
                 <p className="text-amber-600 font-bold">
-                  R$ {product.price?.toLocaleString("pt-BR")}
+                  R$ {product.price?.toLocaleString("pt-BR")},00
                 </p>
               </div>
               <div className="p-3 flex flex-col gap-3">
