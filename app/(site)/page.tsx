@@ -45,9 +45,8 @@ export default async function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {" "}
-          <span className="flex gap-1 text-2xl sm:text-3xl md:text-4xl items-end hover:opacity-60 transition">
-            <FaInstagram />
+          <span className="flex gap-1 text-2xl sm:text-3xl md:text-4xl hover:opacity-60 transition">
+            <FaInstagram className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10" />
             <p>fortedistribuidora.moveis</p>
           </span>
         </a>
