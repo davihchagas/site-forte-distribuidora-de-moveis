@@ -58,6 +58,7 @@ export default async function ProductPage({
           <FaArrowAltCircleLeft /> <p>Voltar para a Categoria</p>{" "}
         </Link>
       </div>
+      
       <div className="flex flex-col md:flex-row gap-8 mt-6">
         {/* esquerda */}
         <div className="md:w-1/2">

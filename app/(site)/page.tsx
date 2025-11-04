@@ -9,7 +9,7 @@ import { Card } from "@/src/components/Card";
 import { GrMoney, GrStatusGood } from "react-icons/gr";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { BsBoxSeam } from "react-icons/bs";
-import { FaArrowAltCircleRight  } from "react-icons/fa";
+import { FaArrowAltCircleRight, FaInstagram } from "react-icons/fa";
 import clsx from "clsx";
 import { getHomeProduct } from "@/src/lib/get-home-products";
 
@@ -20,8 +20,12 @@ export default async function Home() {
   const salaDeEstar = all.filter((p) => p.category === "sala_de_estar");
   const salaDeJantar = all.filter((p) => p.category === "sala_de_jantar");
   const quarto = all.filter((p) => p.category === "quarto");
-  const cardClasses = clsx("text-amber-400 p-3 text-center w-30 h-30 md:text-2xl md:w-50 md:h-50 justify-center flex flex-col items-center");
-  const seeMoreClasses = clsx("md:text-2xl my-2 text-amber-400 text-center xl:text-start flex items-center justify-center gap-2 font-bold")
+  const cardClasses = clsx(
+    "text-amber-400 p-3 text-center w-30 h-30 md:text-2xl md:w-50 md:h-50 justify-center flex flex-col items-center"
+  );
+  const seeMoreClasses = clsx(
+    "md:text-2xl my-2 text-amber-400 text-center xl:text-start flex items-center justify-center gap-2 font-bold"
+  );
 
   return (
     <Content>
@@ -35,6 +39,20 @@ export default async function Home() {
         PREÇO DE ATACADO TODO DIA!
       </h1>
 
+      <div className="flex justify-center items-end gap-2 text-amber-400">
+        <a
+          href="https://www.instagram.com/fortedistribuidora.moveis/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {" "}
+          <span className="flex gap-1 text-2xl sm:text-3xl md:text-4xl items-end hover:opacity-60 transition">
+            <FaInstagram />
+            <p>fortedistribuidora.moveis</p>
+          </span>
+        </a>
+      </div>
+
       {/* CARROSSEIS DE PRODUTOS */}
       <div className="flex justify-center text-center xl:justify-between gap-12 mt-10 flex-wrap">
         <section>
@@ -45,10 +63,7 @@ export default async function Home() {
             Quarto
           </Link>
           <ProductsCarousel products={quarto} idx={0} />
-          <Link
-            href="/categorias/quarto"
-            className={seeMoreClasses}
-          >
+          <Link href="/categorias/quarto" className={seeMoreClasses}>
             <FaArrowAltCircleRight />
             <p>Ver tudo de Quarto</p>
           </Link>
@@ -62,10 +77,7 @@ export default async function Home() {
             Sala de Estar
           </Link>
           <ProductsCarousel products={salaDeEstar} idx={4} />
-          <Link
-            href="/categorias/sala-de-estar"
-            className={seeMoreClasses}
-          >
+          <Link href="/categorias/sala-de-estar" className={seeMoreClasses}>
             <FaArrowAltCircleRight />
             <p>Ver tudo de Sala de Estar</p>
           </Link>
@@ -79,10 +91,7 @@ export default async function Home() {
             Sala de Jantar
           </Link>
           <ProductsCarousel products={salaDeJantar} idx={0} />
-          <Link
-            href="/categorias/sala-de-jantar"
-            className={seeMoreClasses}
-          >
+          <Link href="/categorias/sala-de-jantar" className={seeMoreClasses}>
             <FaArrowAltCircleRight />
             <p>Ver tudo de Sala de Jantar</p>
           </Link>

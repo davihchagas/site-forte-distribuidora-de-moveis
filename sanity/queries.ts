@@ -1,4 +1,6 @@
 // sanity/queries.ts
+import { groq } from 'next-sanity'
+
 export const homeProductsQuery = `
 {
   "all": *[_type == "product"]{
@@ -34,3 +36,14 @@ export const homeProductsQuery = `
   }
 }
 `;
+
+export const productsForSitemapQuery = groq`
+  *[
+    _type == "product" &&
+    defined(slug.current) &&
+    !(_id in path("drafts.**"))
+  ]{
+    "slug": slug.current,
+    _updatedAt
+  }
+`

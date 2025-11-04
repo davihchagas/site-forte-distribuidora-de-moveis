@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /studio/
+
+Sitemap: https://www.fortedistribuidorademoveis.com.br/sitemap.xml
