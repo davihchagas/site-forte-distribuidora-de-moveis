@@ -1,12 +1,20 @@
 import { getProductsForSitemap } from '@/src/lib/sitemap-data'
 import type { MetadataRoute } from 'next'
 
-const baseUrl = 'https://www.fortedistribuidorademoveis.com.br/' // troque pelo domínio real
+const baseUrl = 'https://www.fortedistribuidorademoveis.com.br'
+
+function categoryToSlug(category: string) {
+  return category
+    .normalize('NFD') // remove acentos
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/_/g, '-')   // troca _ por -
+    .replace(/\s+/g, '-') // troca espaços por -
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await getProductsForSitemap()
 
-  // Páginas fixas principais
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/`,
@@ -33,27 +41,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     },
   ]
+  
+  const validProducts = products.filter(
+    (product) => product.category && product.slug
+  )
 
-  // Categorias únicas, extraídas dos produtos
   const categorySet = new Set<string>()
-  for (const product of products) {
-    if (product.category) {
-      categorySet.add(product.category)
-    }
+  for (const product of validProducts) {
+    categorySet.add(product.category)
   }
 
   const categoryPages: MetadataRoute.Sitemap = Array.from(categorySet).map(
     (category) => ({
-      url: `${baseUrl}/categorias/${category}`,
+      url: `${baseUrl}/categorias/${encodeURIComponent(
+        categoryToSlug(category)
+      )}`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.7,
     })
   )
 
-  // Páginas de produto: /categorias/[categoria]/[produto]
-  const productPages: MetadataRoute.Sitemap = products.map((product) => ({
-    url: `${baseUrl}/categorias/${product.category}/${product.slug}`,
+  const productPages: MetadataRoute.Sitemap = validProducts.map((product) => ({
+    url: `${baseUrl}/categorias/${encodeURIComponent(
+      categoryToSlug(product.category)
+    )}/${encodeURIComponent(product.slug)}`,
     lastModified: new Date(product._updatedAt),
     changeFrequency: 'weekly',
     priority: 0.8,

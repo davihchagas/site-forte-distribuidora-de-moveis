@@ -16,7 +16,6 @@ export default function ProductImagesCarousel({ images, alt }: Props) {
   const [index, setIndex] = useState(0);
 
   const hasImages = Array.isArray(images) && images.length > 0;
-  const current = hasImages ? images[index] : null;
 
   function prev() {
     if (!hasImages) return;
@@ -40,19 +39,32 @@ export default function ProductImagesCarousel({ images, alt }: Props) {
       : urlFor(img).width(w).url();
   }
 
+  function buildBlurDataURL(img: SanityImage) {
+    return urlFor(img).width(20).height(20).blur(10).url();
+  }
+
   return (
     <div className="relative w-full">
-      {/* área da imagem */}
-      <div className="w-full rounded-2xl bg-slate-100 flex items-center justify-center min-h-80 md:min-h-[420px] overflow-hidden">
-        {current ? (
-          <Image
-            src={buildImageUrl(current, 1200)}
-            alt={current.alt || alt}
-            width={1200}
-            height={900}
-            className="max-h-[520px] w-auto object-contain"
-            priority
-          />
+      {/* área da imagem com transição */}
+      <div className="w-full bg-slate-100 flex items-center justify-center min-h-80 md:min-h-130 overflow-hidden relative">
+        {hasImages ? (
+          <>
+            {images.map((img, i) => (
+              <Image
+                key={i}
+                src={buildImageUrl(img, 1200)}
+                alt={img.alt || alt}
+                width={1200}
+                height={900}
+                className={`absolute max-h-[520px] w-auto object-contain transition-opacity duration-500 ease-in-out ${
+                  i === index ? "opacity-100" : "opacity-0"
+                }`}
+                priority={i === index}
+                placeholder="blur"
+                blurDataURL={buildBlurDataURL(img)}
+              />
+            ))}
+          </>
         ) : (
           <div className="w-full h-80 flex items-center justify-center text-slate-400">
             Sem imagem
@@ -65,14 +77,14 @@ export default function ProductImagesCarousel({ images, alt }: Props) {
         <>
           <button
             onClick={prev}
-            className="absolute top-1/2 left-3 -translate-y-1/2 bg-amber-400 rounded-full shadow p-1"
+            className="absolute top-1/2 left-3 -translate-y-1/2 bg-amber-400 rounded-full shadow p-1 hover:scale-105 transition"
             aria-label="Imagem anterior"
           >
             <CiCircleChevLeft className="text-3xl text-white" />
           </button>
           <button
             onClick={next}
-            className="absolute top-1/2 right-3 -translate-y-1/2 bg-amber-400 rounded-full shadow p-1"
+            className="absolute top-1/2 right-3 -translate-y-1/2 bg-amber-400 rounded-full shadow p-1 hover:scale-105 transition"
             aria-label="Próxima imagem"
           >
             <CiCircleChevRight className="text-3xl text-white" />
@@ -97,6 +109,8 @@ export default function ProductImagesCarousel({ images, alt }: Props) {
                 fill
                 sizes="80px"
                 className="object-cover"
+                placeholder="blur"
+                blurDataURL={buildBlurDataURL(img)}
               />
             </button>
           ))}

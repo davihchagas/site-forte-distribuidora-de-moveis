@@ -12,6 +12,13 @@ import { BsBoxSeam } from "react-icons/bs";
 import { FaArrowAltCircleRight, FaInstagram } from "react-icons/fa";
 import clsx from "clsx";
 import { getHomeProduct } from "@/src/lib/get-home-products";
+import { Metadata } from "next";
+import { Suspense } from "react";
+import { SpinLoader } from "@/src/components/SpinLoader";
+
+export const metadata: Metadata = {
+  title: "Home",
+};
 
 export default async function Home() {
   const { all } = await getHomeProduct();
@@ -24,7 +31,7 @@ export default async function Home() {
     "text-amber-400 p-3 text-center w-30 h-30 md:text-2xl md:w-50 md:h-50 justify-center flex flex-col items-center"
   );
   const seeMoreClasses = clsx(
-    "md:text-2xl my-2 text-amber-400 text-center xl:text-start flex items-center justify-center gap-2 font-bold"
+    "md:text-2xl my-2 text-amber-400 text-center xl:text-start flex items-center justify-center gap-2 font-bold transition hover:opacity-70"
   );
 
   return (
@@ -61,7 +68,9 @@ export default async function Home() {
           >
             Quarto
           </Link>
-          <ProductsCarousel products={quarto} idx={0} />
+          <Suspense fallback={<SpinLoader />}>
+            <ProductsCarousel products={quarto} idx={0} />
+          </Suspense>
           <Link href="/categorias/quarto" className={seeMoreClasses}>
             <FaArrowAltCircleRight />
             <p>Ver tudo de Quarto</p>
@@ -75,7 +84,9 @@ export default async function Home() {
           >
             Sala de Estar
           </Link>
-          <ProductsCarousel products={salaDeEstar} idx={4} />
+          <Suspense fallback={<SpinLoader />}>
+            <ProductsCarousel products={salaDeEstar} idx={4} />
+          </Suspense>
           <Link href="/categorias/sala-de-estar" className={seeMoreClasses}>
             <FaArrowAltCircleRight />
             <p>Ver tudo de Sala de Estar</p>
@@ -89,7 +100,9 @@ export default async function Home() {
           >
             Sala de Jantar
           </Link>
-          <ProductsCarousel products={salaDeJantar} idx={0} />
+          <Suspense fallback={<SpinLoader />}>
+            <ProductsCarousel products={salaDeJantar} idx={0} />
+          </Suspense>
           <Link href="/categorias/sala-de-jantar" className={seeMoreClasses}>
             <FaArrowAltCircleRight />
             <p>Ver tudo de Sala de Jantar</p>
@@ -97,7 +110,7 @@ export default async function Home() {
         </section>
       </div>
 
-      <section className="flex justify-center my-3">
+      <section className="flex justify-center my-15">
         <div className="flex flex-wrap justify-evenly gap-4 w-full">
           <Card className={cardClasses}>
             <IoShieldCheckmarkOutline />

@@ -47,13 +47,13 @@ export function Footer() {
         <section className="flex flex-col items-center gap-2">
           <h1 className="text-amber-500 text-2xl">Links</h1>
           <ul className="text-slate-50 flex flex-col gap-3 items-center">
-            <Link href="/">Início</Link>
-            <Link href="/loja-fisica">Loja Física</Link>
-            <Link href="/sobre">Sobre</Link>
-            <Link href="/contato">Contato</Link>
-            <Link href="/categorias/quarto">Quarto</Link>
-            <Link href="/categorias/sala-de-estar">Sala de estar</Link>
-            <Link href="/categorias/sala-de-jantar">Sala de jantar</Link>
+            <Link className="transition hover:opacity-70" href="/">Início</Link>
+            <Link className="transition hover:opacity-70" href="/loja-fisica">Loja Física</Link>
+            <Link className="transition hover:opacity-70" href="/sobre">Sobre</Link>
+            <Link className="transition hover:opacity-70" href="/contato">Contato</Link>
+            <Link className="transition hover:opacity-70" href="/categorias/quarto">Quarto</Link>
+            <Link className="transition hover:opacity-70" href="/categorias/sala-de-estar">Sala de estar</Link>
+            <Link className="transition hover:opacity-70" href="/categorias/sala-de-jantar">Sala de jantar</Link>
           </ul>
         </section>
 
@@ -69,7 +69,7 @@ export function Footer() {
       </footer>
       <section className="text-center w-full bg-black p-6">
         <p className="text-slate-50">
-          Copyright &copy; {new Date().getFullYear()}
+          Copyright &copy; 2025
         </p>
         <p className="text-slate-50">Todos os direitos reservados.</p>
       </section>

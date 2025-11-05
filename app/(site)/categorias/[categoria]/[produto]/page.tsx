@@ -8,11 +8,22 @@ import Link from "next/link";
 import { routeToSanityCategory } from "@/src/utils/routeToSanity";
 import { getFullProduct } from "@/src/lib/get-full-product";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { getAllProducts, ProductPath } from "@/src/lib/get-all-products";
 
 type ParamsPromise = Promise<{
   categoria: string;
   produto: string;
 }>;
+
+export async function generateStaticParams() {
+  // Obtém todos os produtos e suas categorias
+  const products: ProductPath[] = await getAllProducts();
+
+  return products.map((product) => ({
+    categoria: product.category,
+    produto: product.slug,
+  }));
+}
 
 export default async function ProductPage({
   params,

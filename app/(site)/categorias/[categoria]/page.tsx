@@ -6,19 +6,64 @@ import { Card } from "@/src/components/Card";
 import { urlFor } from "@/sanity/lib/image";
 import { WhatsAppButton } from "@/src/components/WhatsAppButton";
 import { normalizeRouteCategory } from "@/src/utils/normalizeRoute";
-import { getAllProducts } from "@/src/lib/get-category-products";
+import { getCategoryProducts } from "@/src/lib/get-category-products";
+import { Metadata } from "next";
+import { getHomeProduct } from "@/src/lib/get-home-products";
 
 type PageParams = Promise<{ categoria: string }>;
 
+export async function generateMetadata({
+  params,
+}: {
+  params: PageParams;
+}): Promise<Metadata> {
+  const { categoria } = await params;
+  const routeCategory = normalizeRouteCategory(categoria);
+
+
+  const title =
+    routeCategory === "sala-de-estar"
+      ? "Sala de Estar"
+      : routeCategory === "sala-de-jantar"
+      ? "Sala de Jantar"
+      : routeCategory === "quarto"
+      ? "Quarto"
+      : routeCategory;
+  return {
+    title
+  }
+}
+
+export async function generateStaticParams() {
+  const { all } = await getHomeProduct();
+
+  // Gera as categorias únicas com normalização
+  const categoriasSet = new Set<string>();
+
+  for (const produto of all) {
+    const categoria =
+      typeof produto.category === "string"
+        ? normalizeRouteCategory(produto.category.toLowerCase().trim())
+        : null;
+
+    if (categoria) categoriasSet.add(categoria);
+  }
+
+  const categorias = Array.from(categoriasSet);
+
+  // 🔧 IMPORTANTE: precisa retornar objetos com a chave 'categoria'
+  return categorias.map((categoria) => ({ categoria }));
+}
 export default async function CategoriaPage({
   params,
 }: {
   params: PageParams;
 }) {
+  
   const { categoria } = await params;
   const routeCategory = normalizeRouteCategory(categoria);
 
-  const allProducts = await getAllProducts();
+  const allProducts = await getCategoryProducts();
 
   const wanted = [
     routeCategory,
@@ -36,9 +81,9 @@ export default async function CategoriaPage({
 
   const title =
     routeCategory === "sala-de-estar"
-      ? "Sala de estar"
+      ? "Sala de Estar"
       : routeCategory === "sala-de-jantar"
-      ? "Sala de jantar"
+      ? "Sala de Jantar"
       : routeCategory === "quarto"
       ? "Quarto"
       : routeCategory;
@@ -55,7 +100,7 @@ export default async function CategoriaPage({
         </p>
       ) : (
         <section className="flex flex-wrap gap-6 mt-4 justify-center xl:justify-between">
-          {products.map((product) => (
+          {products.map((product, idx) => (
             <Card
               key={product.currentSlug}
               className="w-100 flex flex-col justify-between"
@@ -74,6 +119,7 @@ export default async function CategoriaPage({
                     width={500}
                     height={500}
                     className="rounded-t-2xl object-cover"
+                    priority={idx < 4}
                   />
                 ) : (
                   <div className="w-[500px] h-[500px] bg-gray-100 flex items-center justify-center text-gray-500">

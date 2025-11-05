@@ -1,8 +1,13 @@
+import { cache } from "react";
 import { ProductFull } from "../models/product";
 import { client } from "@/sanity/lib/client";
 
-export async function getFullProduct(produto: string, sanityCategory: string): Promise<ProductFull | null> {
-  const query = `*[_type == "product" && slug.current == $slug && category == $category][0]{
+export const getFullProduct = cache(
+  async (
+    produto: string,
+    sanityCategory: string
+  ): Promise<ProductFull | null> => {
+    const query = `*[_type == "product" && slug.current == $slug && category == $category][0]{
     name,
     price,
     "slug": slug.current,
@@ -27,8 +32,9 @@ export async function getFullProduct(produto: string, sanityCategory: string): P
     sku
   }`;
 
-  return client.fetch<ProductFull | null>(query, {
+    return client.fetch<ProductFull | null>(query, {
       slug: produto,
       category: sanityCategory,
     });
-}
+  }
+);

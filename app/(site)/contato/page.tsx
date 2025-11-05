@@ -1,9 +1,14 @@
 import { Content } from "@/src/components/Content";
 import { WhatsAppButton } from "@/src/components/WhatsAppButton";
 import clsx from "clsx";
+import { Metadata } from "next";
 import { IoMdTime } from "react-icons/io";
 
-export default function Contact() {
+export const metadata: Metadata = {
+  title: "Contato"
+}
+
+export default async function Contact() {
   const spanClass = clsx("flex items-center gap-2 md:text-2xl");
   return (
     <Content>

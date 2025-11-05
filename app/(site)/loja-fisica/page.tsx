@@ -5,8 +5,13 @@ import { FaWhatsapp } from "react-icons/fa";
 import Image from "next/image";
 import FachadaLoja from "@/public/loja.webp";
 import clsx from "clsx";
+import { Metadata } from "next";
 
-export default function Loja() {
+export const metadata: Metadata = {
+  title: "Loja Física"
+}
+
+export default async function Loja() {
   const titleClasses = clsx("text-2xl md:text-3xl font-bold text-amber-400");
   const spanClasses = clsx("flex items-center gap-2 md:text-2xl");
   

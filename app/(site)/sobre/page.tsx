@@ -1,8 +1,14 @@
 import { Card } from "@/src/components/Card";
 import { Content } from "@/src/components/Content";
 import clsx from "clsx";
+import { Metadata } from "next";
 
-export default function About() {
+export const metadata: Metadata = {
+  title: "Sobre"
+}
+
+export default async function About() {
+
   const cardClass = clsx("md:text-2xl font-bold text-amber-400 flex items-center text-center w-50 h-50 m-auto p-7");
   const titleClass = clsx("text-2xl md:text-3xl font-bold text-amber-400 text-start");
   return (
