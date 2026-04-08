@@ -47,7 +47,7 @@ export function ProductImage({ product }: Props) {
       href={`/categorias/${catRoute}/${product.currentSlug}`}
       className="block"
     >
-      <div className="relative w-full aspect-square overflow-hidden rounded-t-2xl bg-linear-to-br from-gray-50 to-black group">
+      <div className="relative w-full aspect-square overflow-hidden rounded-t-2xl bg-linear-to-br from-gray-50 to-gray-100 group">
         {hasImages && currentImage ? (
           <>
             <Image
