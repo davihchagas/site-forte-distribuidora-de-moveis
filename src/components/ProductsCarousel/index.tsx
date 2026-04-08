@@ -72,6 +72,8 @@ export default function ProductsCarousel({ products, idx }: Props) {
                 <p className="text-amber-600 font-bold">
                   R$ {product.price?.toLocaleString("pt-BR")},00
                 </p>
+                <p>Pagamento à vista no Pix ou dinheiro.</p>
+                <p>No cartão, consultar taxas.</p>
               </div>
 
               <div className="p-3 flex flex-col gap-3">

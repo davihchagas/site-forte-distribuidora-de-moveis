@@ -67,5 +67,5 @@ export interface SimpleProductCard {
   price: number;
   currentSlug: string;
   category: ProductCategory | string;
-  mainImage?: SanityImage;
+  images?:  SanityImage[] | undefined;
 }

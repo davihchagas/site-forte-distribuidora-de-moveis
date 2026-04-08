@@ -7,7 +7,10 @@ export const homeProductsQuery = `
     name,
     price,
     "currentSlug": slug.current,
-    "mainImage": images[0],
+    "images": images[]{
+      ...,
+      asset->
+    },
     category
   } | order(_createdAt desc),
 
@@ -16,21 +19,30 @@ export const homeProductsQuery = `
       name,
       price,
       "currentSlug": slug.current,
-      "mainImage": images[0],
+      "images": images[]{
+        ...,
+        asset->
+      },
       category
     },
     "sala_de_jantar": *[_type == "product" && category == "sala_de_jantar"][0]{
       name,
       price,
       "currentSlug": slug.current,
-      "mainImage": images[0],
+      "images": images[]{
+        ...,
+        asset->
+      },
       category
     },
     "quarto": *[_type == "product" && category == "quarto"][0]{
       name,
       price,
       "currentSlug": slug.current,
-      "mainImage": images[0],
+      "images": images[]{
+        ...,
+        asset->
+      },
       category
     }
   }

@@ -17,7 +17,7 @@ export default function SiteLayout({
       </Container>
 
       <WhatsAppButton
-        size={40}
+        size={30}
         classes="p-2 fixed bottom-4 right-4 md:right-11 md:bottom-11"
         message="Olá! Vi o site da loja e gostaria de mais informações."
       />

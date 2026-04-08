@@ -1,9 +1,27 @@
-import { SanityImage } from "../models/product";
-import { urlFor } from "@/sanity/lib/image";
+import imageUrlBuilder from "@sanity/image-url";
+import { client } from "@/sanity/lib/client";
+import { SanityImage } from "@/src/models/product";
 
-export function buildImageUrl(img: SanityImage, w: number, h: number) {
-  if ("url" in img.asset && img.asset.url) {
-    return img.asset.url;
+const builder = imageUrlBuilder(client);
+
+export function buildImageUrl(
+  source: SanityImage | undefined,
+  width: number,
+  height: number
+) {
+  if (!source?.asset) return "/placeholder.png";
+
+  const asset = source.asset as any;
+
+  // Se já veio com URL pronta
+  if (asset.url) {
+    return asset.url;
   }
-  return urlFor(img).width(w).height(h).url();
+
+  // Se veio como referência do Sanity
+  if (asset._ref) {
+    return builder.image(source).width(width).height(height).url();
+  }
+
+  return "/placeholder.png";
 }

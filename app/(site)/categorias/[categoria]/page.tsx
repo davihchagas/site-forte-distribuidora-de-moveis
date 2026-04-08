@@ -1,9 +1,8 @@
 // app/categorias/[categoria]/page.tsx
 import { Content } from "@/src/components/Content";
-import Image from "next/image";
+import { ProductImage } from "@/src/components/ProductImage";
 import Link from "next/link";
 import { Card } from "@/src/components/Card";
-import { urlFor } from "@/sanity/lib/image";
 import { WhatsAppButton } from "@/src/components/WhatsAppButton";
 import { normalizeRouteCategory } from "@/src/utils/normalizeRoute";
 import { getCategoryProducts } from "@/src/lib/get-category-products";
@@ -100,33 +99,12 @@ export default async function CategoriaPage({
         </p>
       ) : (
         <section className="flex flex-wrap gap-6 mt-4 justify-center xl:justify-between">
-          {products.map((product, idx) => (
+          {products.map((product) => (
             <Card
               key={product.currentSlug}
               className="w-100 flex flex-col justify-between"
             >
-              <Link
-                href={`/categorias/${routeCategory}/${product.currentSlug}`}
-                className="block"
-              >
-                {product.mainImage ? (
-                  <Image
-                    src={urlFor(product.mainImage)
-                      .width(500)
-                      .height(500)
-                      .url()}
-                    alt={product.name}
-                    width={500}
-                    height={500}
-                    className="rounded-t-2xl object-cover"
-                    priority={idx < 4}
-                  />
-                ) : (
-                  <div className="w-[500px] h-[500px] bg-gray-100 flex items-center justify-center text-gray-500">
-                    Sem imagem
-                  </div>
-                )}
-              </Link>
+              <ProductImage product={product} />
               <div className="flex flex-col px-3 py-2">
                 <h2 className="font-semibold mt-2">{product.name}</h2>
                 <p className="text-amber-600 font-bold">
